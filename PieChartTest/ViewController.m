@@ -22,7 +22,7 @@
 	
     NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:10];
     
-    for(int i = 0; i < 15; i ++)
+    for(int i = 0; i < 25; i ++)
     {
         NSNumber *one = [NSNumber numberWithInt:rand()%60+20];
         [dataArray addObject:one];
