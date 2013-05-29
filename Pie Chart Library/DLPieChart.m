@@ -5,26 +5,6 @@
 //  Created by Dilip Lilaramani on 5/29/13.
 //  Copyright (c) 2013 Dilip Lilaramani. All rights reserved.
 //
-//  Permission is hereby granted, free of charge, to any person
-//  obtaining a copy of this software and associated documentation
-//  files (the "Software"), to deal in the Software without
-//  restriction, including without limitation the rights to use,
-//  copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following
-//  conditions:
-//
-//  The above copyright notice and this permission notice shall be
-//  included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-//  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "DLPieChart.h"
 #import <QuartzCore/QuartzCore.h>
@@ -123,7 +103,7 @@ static NSUInteger kDefaultSliceZOrder = 100;
 @synthesize selectedSliceOffsetRadius = _selectedSliceOffsetRadius;
 @synthesize showPercentage = _showPercentage;
 
-@synthesize xyDataArray, xyColorsArray,xyPieChartView;
+@synthesize DLDataArray, DLColorsArray,DLPieChartView;
 
 static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAngle, CGFloat endAngle) 
 {
@@ -694,17 +674,17 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
 #pragma mark My Delegate Methods
 - (void)renderInLayer:(DLPieChart *)layerHostingView dataArray:(NSMutableArray*)dataArray
 {
-    if(!self.xyDataArray)
-        xyDataArray = [[NSMutableArray alloc] init];
-    if(!self.xyColorsArray)
-        xyColorsArray = [[NSMutableArray alloc] init];
+    if(!self.DLDataArray)
+        DLDataArray = [[NSMutableArray alloc] init];
+    if(!self.DLColorsArray)
+        DLColorsArray = [[NSMutableArray alloc] init];
     
-    self.xyDataArray = dataArray;
-    self.xyPieChartView = layerHostingView;
+    self.DLDataArray = dataArray;
+    self.DLPieChartView = layerHostingView;
     
-    for(int i=0;i<self.xyDataArray.count;i++)
+    for(int i=0;i<self.DLDataArray.count;i++)
     {
-        [self.xyColorsArray addObject:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1.0]];
+        [self.DLColorsArray addObject:[UIColor colorWithRed:(rand()%255)/255.0 green:(rand()%255)/255.0 blue:(rand()%255)/255.0 alpha:1.0]];
     }
     
     [layerHostingView setDataSource:self];
@@ -713,7 +693,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     //[self.pieChartLeft setStartPieAngle:M_PI_2];
     [layerHostingView setAnimationSpeed:1.0];
     [layerHostingView setPieRadius:((MIN(layerHostingView.frame.size.width, layerHostingView.frame.size.height) - OFFSET*2))/2];
-    [layerHostingView setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:(24-xyDataArray.count/2)]];
+    [layerHostingView setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:(24-DLDataArray.count/2)]];
     [layerHostingView setShowPercentage:NO];
     [layerHostingView setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1]];
     [layerHostingView setPieCenter:CGPointMake(layerHostingView.pieRadius+OFFSET, layerHostingView.pieRadius+OFFSET)];
@@ -722,10 +702,6 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     [layerHostingView setLabelShadowColor:[UIColor blackColor]];
   
     [layerHostingView reloadData];
-    
-    //CGPoint customPieCentre = CGPointMake((layerHostingView.pieRadius+5), (layerHostingView.pieRadius+5));
-    
-    //[self customamizeDraw:layerHostingView pieCentre:customPieCentre animationSpeed:1.0 labelRadius:120];
     
     [self drawLegends:layerHostingView dataArray:dataArray];
 }
@@ -774,7 +750,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
         btn.frame = CGRectMake(5, y, 25, 25);
         btn.tag = i;
         [btn addTarget:self action:@selector(legendClicked:) forControlEvents:UIControlEventTouchUpInside];
-        btn.backgroundColor = [xyColorsArray objectAtIndex:i];
+        btn.backgroundColor = [DLColorsArray objectAtIndex:i];
         [legendsScrollView addSubview:btn];
         
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(40, y, legendWidth-OFFSET*2, 25)];
@@ -793,29 +769,27 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
 }
 -(void)legendClicked:(UIButton*)tempBtn
 {
-    //[self pieChart:self.xyPieChartView didSelectSliceAtIndex:tempBtn.tag];
-    //[self setSliceDeselectedAtIndex:tempBtn.tag];
-    //[self notifyDelegateOfSelectionChangeFrom:0 to:tempBtn.tag];
+    //legend color click
 }
-#pragma mark - XYPieChart Data Source
+#pragma mark - DLPieChart Data Source
 
 - (NSUInteger)numberOfSlicesInPieChart:(DLPieChart *)pieChart
 {
-    return self.xyDataArray.count;
+    return self.DLDataArray.count;
 }
 
 - (CGFloat)pieChart:(DLPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index
 {
-    return [[self.xyDataArray objectAtIndex:index] intValue];
+    return [[self.DLDataArray objectAtIndex:index] intValue];
 }
 
 - (UIColor *)pieChart:(DLPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)index
 {
     //if(pieChart == self.pieChartRight) return nil;
-    return [self.xyColorsArray objectAtIndex:(index % self.xyColorsArray.count)];
+    return [self.DLColorsArray objectAtIndex:(index % self.DLColorsArray.count)];
 }
 
-#pragma mark - XYPieChart Delegate
+#pragma mark - DLPieChart Delegate
 - (void)pieChart:(DLPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
 {
     NSLog(@"did select slice at index %d",index);
