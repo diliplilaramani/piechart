@@ -14,10 +14,21 @@
 
 @implementation ViewController
 
+@synthesize pieChartView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:10];
+    
+    for(int i = 0; i < 15; i ++)
+    {
+        NSNumber *one = [NSNumber numberWithInt:rand()%60+20];
+        [dataArray addObject:one];
+    }
+    
+    [self.pieChartView renderInLayer:self.pieChartView dataArray:dataArray];
 }
 
 - (void)didReceiveMemoryWarning

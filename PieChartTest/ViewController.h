@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLPieChart.h"
 
 @interface ViewController : UIViewController
+
+@property (nonatomic, retain) IBOutlet DLPieChart *pieChartView;
 
 @end

@@ -18,6 +18,8 @@
 		DABE3A491755C5A00037CE81 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DABE3A481755C5A00037CE81 /* Default-568h@2x.png */; };
 		DABE3A4C1755C5A00037CE81 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABE3A4A1755C5A00037CE81 /* MainStoryboard.storyboard */; };
 		DABE3A4F1755C5A00037CE81 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABE3A4E1755C5A00037CE81 /* ViewController.m */; };
+		DABE3A581755C5BB0037CE81 /* DLPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = DABE3A571755C5BB0037CE81 /* DLPieChart.m */; };
+		DABE3A5A1755C5D60037CE81 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABE3A591755C5D60037CE81 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		DABE3A4B1755C5A00037CE81 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DABE3A4D1755C5A00037CE81 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DABE3A4E1755C5A00037CE81 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DABE3A561755C5BB0037CE81 /* DLPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPieChart.h; sourceTree = "<group>"; };
+		DABE3A571755C5BB0037CE81 /* DLPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPieChart.m; sourceTree = "<group>"; };
+		DABE3A591755C5D60037CE81 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABE3A5A1755C5D60037CE81 /* QuartzCore.framework in Frameworks */,
 				DABE3A331755C5A00037CE81 /* UIKit.framework in Frameworks */,
 				DABE3A351755C5A00037CE81 /* Foundation.framework in Frameworks */,
 				DABE3A371755C5A00037CE81 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +62,8 @@
 		DABE3A261755C5A00037CE81 = {
 			isa = PBXGroup;
 			children = (
+				DABE3A591755C5D60037CE81 /* QuartzCore.framework */,
+				DABE3A551755C5BB0037CE81 /* Pie Chart Library */,
 				DABE3A381755C5A00037CE81 /* PieChartTest */,
 				DABE3A311755C5A00037CE81 /* Frameworks */,
 				DABE3A301755C5A00037CE81 /* Products */,
@@ -105,6 +113,15 @@
 				DABE3A481755C5A00037CE81 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DABE3A551755C5BB0037CE81 /* Pie Chart Library */ = {
+			isa = PBXGroup;
+			children = (
+				DABE3A561755C5BB0037CE81 /* DLPieChart.h */,
+				DABE3A571755C5BB0037CE81 /* DLPieChart.m */,
+			);
+			path = "Pie Chart Library";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +193,7 @@
 				DABE3A3F1755C5A00037CE81 /* main.m in Sources */,
 				DABE3A431755C5A00037CE81 /* AppDelegate.m in Sources */,
 				DABE3A4F1755C5A00037CE81 /* ViewController.m in Sources */,
+				DABE3A581755C5BB0037CE81 /* DLPieChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
