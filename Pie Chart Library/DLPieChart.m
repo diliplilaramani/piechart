@@ -754,7 +754,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
         [legendsScrollView addSubview:btn];
         
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(40, y, legendWidth-OFFSET*2, 25)];
-        lbl.text = [NSString stringWithFormat:@"apple google facebook yahoo:%@",[dataArray objectAtIndex:i]];
+        lbl.text = [NSString stringWithFormat:@"%@",[dataArray objectAtIndex:i]];
         lbl.backgroundColor = [UIColor clearColor];
         [lbl setAdjustsFontSizeToFitWidth:YES];
         [legendsScrollView addSubview:lbl];
